@@ -23,6 +23,7 @@ import {
 } from "3d-tiles-renderer/plugins";
 import type { TilesRenderer as TilesRendererImpl } from "3d-tiles-renderer";
 import { PhotorealMarkers } from "./PhotorealMarkers";
+import { PhotorealCameraRig } from "./PhotorealCameraRig";
 import { useMapStore } from "@/lib/store";
 
 const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -162,8 +163,9 @@ export function PhotorealScene() {
         <CaptureBridge />
       </TilesRenderer>
 
-      {/* World-space pins — sibling of <TilesRenderer> on purpose (see notes). */}
+      {/* World-space pins + fly-to rig — siblings of <TilesRenderer> on purpose. */}
       {tiles && <PhotorealMarkers tiles={tiles} />}
+      {tiles && <PhotorealCameraRig tiles={tiles} />}
     </Canvas>
   );
 }
