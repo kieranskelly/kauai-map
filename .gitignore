@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local collab store (file driver fallback when no DATABASE_URL)
+/.data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env*.local

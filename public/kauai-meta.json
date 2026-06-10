@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "minLon": -159.82,
+    "minLat": 21.84,
+    "maxLon": -159.27,
+    "maxLat": 22.26
+  },
+  "eleZoom": 12,
+  "gridWidth": 540,
+  "gridHeight": 445,
+  "maxEle": 1592,
+  "minEle": -500,
+  "satWidth": 2048,
+  "satHeight": 1687,
+  "bakedAt": "static"
+}
