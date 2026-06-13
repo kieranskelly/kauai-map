@@ -55,6 +55,36 @@ export interface Poi {
 export const POIS: Poi[] = [
   // ══ North Shore ═══════════════════════════════════════════════
   {
+    id: "hanalei-town",
+    name: "Hanalei",
+    category: "town",
+    region: "North",
+    lat: 22.2046,
+    lng: -159.4994,
+    blurb:
+      "Laid-back North Shore town behind the bay — galleries, taro fields, surf shops, and shave ice.",
+  },
+  {
+    id: "princeville",
+    name: "Princeville",
+    category: "town",
+    region: "North",
+    lat: 22.2233,
+    lng: -159.4869,
+    blurb:
+      "Cliff-top resort community above Hanalei Bay — golf, ocean lookouts, and the Queen's Bath trail.",
+  },
+  {
+    id: "kilauea-town",
+    name: "Kīlauea",
+    category: "town",
+    region: "North",
+    lat: 22.2113,
+    lng: -159.4147,
+    blurb:
+      "Quiet former plantation town — Kong Lung shops, bakeries, the lighthouse, and fish market.",
+  },
+  {
     id: "hanalei-bay",
     name: "Hanalei Bay",
     category: "beach",
@@ -134,20 +164,20 @@ export const POIS: Poi[] = [
   {
     id: "one-hotel-hanalei-bay",
     name: "1 Hotel Hanalei Bay",
-    category: "stay",
+    category: "food",
     region: "North",
     lat: 22.2206,
     lng: -159.4972,
-    blurb: "Luxury sustainability-minded resort above Hanalei Bay.",
+    blurb: "Sunset drinks at the resort's oceanfront bar above Hanalei Bay.",
   },
   {
     id: "the-haven",
     name: "the haven",
-    category: "stay",
+    category: "food",
     region: "North",
     lat: 22.2129,
     lng: -159.541,
-    blurb: "North Shore stay/retreat out toward Wainiha. (Confirm details.)",
+    blurb: "North Shore coffee shop out toward Wainiha. (Confirm exact spot.)",
   },
   {
     id: "lumahai-beach",
@@ -232,6 +262,36 @@ export const POIS: Poi[] = [
 
   // ══ East Side ═════════════════════════════════════════════════
   {
+    id: "kapaa-town",
+    name: "Kapaʻa",
+    category: "town",
+    region: "East",
+    lat: 22.0753,
+    lng: -159.319,
+    blurb:
+      "The east side's lively hub — beach-town shops, food trucks, cafés, and the coastal path.",
+  },
+  {
+    id: "wailua",
+    name: "Wailua",
+    category: "town",
+    region: "East",
+    lat: 22.0469,
+    lng: -159.3387,
+    blurb:
+      "Riverside area south of Kapaʻa — the Wailua River, roadside falls, and sacred Hawaiian sites.",
+  },
+  {
+    id: "lihue-town",
+    name: "Līhuʻe",
+    category: "town",
+    region: "East",
+    lat: 21.9789,
+    lng: -159.3711,
+    blurb:
+      "Kauaʻi's county seat and arrival hub — the airport, harbor, and everyday shops and eats.",
+  },
+  {
     id: "sleeping-giant-east",
     name: "Sleeping Giant — East Trailhead",
     category: "hike",
@@ -283,21 +343,12 @@ export const POIS: Poi[] = [
   {
     id: "kapaa-path",
     name: "Ke Ala Hele Makalae",
-    category: "town",
+    category: "do",
     region: "East",
     lat: 22.0866,
     lng: -159.338,
     blurb:
       "Breezy coastal walking & biking path threading Kapaʻa's beaches and laid-back town.",
-  },
-  {
-    id: "lihue-airport",
-    name: "Līhuʻe Airport",
-    category: "do",
-    region: "East",
-    lat: 21.9788,
-    lng: -159.3438,
-    blurb: "Kauaʻi's main airport (LIH) — your arrival and departure hub.",
   },
   {
     id: "kipu-ranch-adventures",
@@ -476,6 +527,16 @@ export const POIS: Poi[] = [
 
   // ══ South Shore ═══════════════════════════════════════════════
   {
+    id: "poipu-town",
+    name: "Poʻipū",
+    category: "town",
+    region: "South",
+    lat: 21.8836,
+    lng: -159.4585,
+    blurb:
+      "Sunny south-shore resort area — beaches, snorkeling, restaurants, and the island's most reliable weather.",
+  },
+  {
     id: "poipu-beach",
     name: "Poʻipū Beach Park",
     category: "beach",
@@ -527,7 +588,7 @@ export const POIS: Poi[] = [
   },
   {
     id: "old-koloa-town",
-    name: "Old Kōloa Town",
+    name: "Kōloa",
     category: "town",
     region: "South",
     lat: 21.907,
@@ -593,6 +654,26 @@ export const POIS: Poi[] = [
   },
 
   // ══ West Side ═════════════════════════════════════════════════
+  {
+    id: "waimea-town",
+    name: "Waimea",
+    category: "town",
+    region: "West",
+    lat: 21.9569,
+    lng: -159.6679,
+    blurb:
+      "Historic west-side town at the canyon's foot — Captain Cook's landing, plate lunch, and shave ice.",
+  },
+  {
+    id: "kekaha",
+    name: "Kekaha",
+    category: "town",
+    region: "West",
+    lat: 21.9686,
+    lng: -159.7186,
+    blurb:
+      "The island's westernmost town — a long sunny beach and the gateway to Polihale and the canyon.",
+  },
   {
     id: "waimea-canyon-lookout",
     name: "Waimea Canyon Lookout",
@@ -665,7 +746,7 @@ export const POIS: Poi[] = [
   },
   {
     id: "hanapepe",
-    name: "Hanapēpē Town",
+    name: "Hanapēpē",
     category: "town",
     region: "West",
     lat: 21.912,
