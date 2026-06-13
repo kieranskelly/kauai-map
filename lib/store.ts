@@ -12,6 +12,14 @@ interface MapState {
   /** category key → visible. All on by default. */
   active: Record<CategoryKey, boolean>;
   toggleCategory: (key: CategoryKey) => void;
+
+  /** On-screen bearing of true north, in degrees (0 = north points up). Written
+   *  every frame by the photoreal camera rig; read by the DOM compass widget. */
+  compassDeg: number;
+  setCompassDeg: (deg: number) => void;
+  /** Bumped when the user taps the compass; the rig watches it to fly north-up. */
+  northNonce: number;
+  requestNorth: () => void;
 }
 
 export const useMapStore = create<MapState>((set) => ({
@@ -24,6 +32,11 @@ export const useMapStore = create<MapState>((set) => ({
   >,
   toggleCategory: (key) =>
     set((s) => ({ active: { ...s.active, [key]: !s.active[key] } })),
+
+  compassDeg: 0,
+  setCompassDeg: (deg) => set({ compassDeg: deg }),
+  northNonce: 0,
+  requestNorth: () => set((s) => ({ northNonce: s.northNonce + 1 })),
 }));
 
 // Dev-only test handle: lets the preview harness drive selection without

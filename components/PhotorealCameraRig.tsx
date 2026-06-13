@@ -25,15 +25,23 @@ const EASE = 3.5; // lerp rate (higher = snappier); matches the 2D rig's feel
 
 type Toggleable = { enabled: boolean } | null;
 
+// Module-scoped scratch (reused across frames; not React state).
+const _north = new THREE.Vector3();
+const _center = new THREE.Vector2();
+
 export function PhotorealCameraRig({ tiles }: { tiles: TilesRendererImpl }) {
   const camera = useThree((s) => s.camera);
   const get = useThree((s) => s.get); // read the live GlobeControls (set asynchronously)
 
   const selectedId = useMapStore((s) => s.selectedId);
+  const northNonce = useMapStore((s) => s.northNonce);
+  const setCompassDeg = useMapStore((s) => s.setCompassDeg);
 
   const wantCam = useRef<THREE.Vector3 | null>(null);
   const lookTarget = useRef<THREE.Vector3 | null>(null); // eased look point (smooths the rotation)
   const finalTarget = useRef<THREE.Vector3 | null>(null); // the spot itself
+  const lastDeg = useRef(0); // last published compass degree (gate store writes)
+  const firstNorth = useRef(true); // skip the north-reset effect's mount run
 
   useEffect(() => {
     const controls = get().controls as Toggleable;
@@ -90,7 +98,44 @@ export function PhotorealCameraRig({ tiles }: { tiles: TilesRendererImpl }) {
     if (controls) controls.enabled = false; // take the wheel for the flight
   }, [selectedId, tiles, camera, get]);
 
+  // Tap the compass → fly to north-up around the current screen-center pivot.
+  useEffect(() => {
+    if (firstNorth.current) {
+      firstNorth.current = false;
+      return; // don't reset on mount, only on an actual tap
+    }
+    if (!tiles.root) return;
+    const controls = get().controls as Toggleable;
+
+    // Pivot = the ground point at screen center (what the user is looking at).
+    const ray = new THREE.Raycaster();
+    ray.setFromCamera(_center.set(0, 0), camera);
+    const hits = ray.intersectObject(tiles.group, true);
+    const pivot = hits.length ? hits[0].point.clone() : new THREE.Vector3(0, 0, 0);
+
+    // Keep pitch + distance; swing azimuth so the camera sits due south of the
+    // pivot and looks north → north ends up at the top of the screen.
+    const offset = camera.position.clone().sub(pivot);
+    const hDist = Math.hypot(offset.x, offset.z) || 1;
+    finalTarget.current = pivot;
+    wantCam.current = new THREE.Vector3(pivot.x, pivot.y + offset.y, pivot.z - hDist);
+    const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+    lookTarget.current = camera.position
+      .clone()
+      .addScaledVector(fwd, camera.position.distanceTo(pivot));
+
+    if (controls) controls.enabled = false;
+  }, [northNonce, tiles, camera, get]);
+
   useFrame((_, dt) => {
+    // Publish the on-screen bearing of true north for the DOM compass (cheap).
+    _north.set(0, 0, 1).transformDirection(camera.matrixWorldInverse);
+    const deg = Math.round(Math.atan2(_north.x, _north.y) * (180 / Math.PI));
+    if (deg !== lastDeg.current) {
+      lastDeg.current = deg;
+      setCompassDeg(deg);
+    }
+
     if (!wantCam.current || !finalTarget.current || !lookTarget.current) return;
     const k = 1 - Math.exp(-dt * EASE);
     camera.position.lerp(wantCam.current, k);
