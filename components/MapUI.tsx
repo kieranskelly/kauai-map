@@ -1,6 +1,7 @@
 "use client";
 
 import { CollabProvider } from "./CollabProvider";
+import { Compass } from "./Compass";
 import { Filters } from "./Filters";
 import { Leaderboard } from "./Leaderboard";
 import { PoiCard } from "./PoiCard";
@@ -16,7 +17,10 @@ export function MapUI() {
           <div className="pointer-events-auto rounded-full border border-white/10 bg-black/35 px-4 py-2 text-sm font-medium tracking-tight text-white/90 shadow-lg backdrop-blur-md">
             🌋 Kauaʻi
           </div>
-          <Leaderboard />
+          <div className="flex items-center gap-2">
+            <Compass />
+            <Leaderboard />
+          </div>
         </div>
         <div className="flex justify-center">
           <Filters />
