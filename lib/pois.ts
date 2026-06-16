@@ -487,16 +487,6 @@ export const POIS: Poi[] = [
     blurb: "Hot-yoga studio on the east side.",
   },
   {
-    id: "hamura-saimin",
-    name: "Hamura Saimin",
-    category: "food",
-    region: "East",
-    lat: 21.9745,
-    lng: -159.369,
-    blurb:
-      "Līhuʻe institution since 1952 — slurp saimin at the zigzag counter, save room for liliko'i pie.",
-  },
-  {
     id: "pono-market",
     name: "Pono Market",
     category: "food",
@@ -856,16 +846,6 @@ export const POIS: Poi[] = [
       "Oceanfront fine dining with the island's marquee sunset. Book well ahead.",
   },
   {
-    id: "da-crack",
-    name: "Da Crack",
-    category: "food",
-    region: "South",
-    lat: 21.887,
-    lng: -159.469,
-    blurb:
-      "Hole-in-the-wall Mexican near Poʻipū — burritos and bowls locals line up for.",
-  },
-  {
     id: "koloa-fish-market",
     name: "Kōloa Fish Market",
     category: "food",
@@ -1076,25 +1056,5 @@ export const POIS: Poi[] = [
     lat: 21.9569,
     lng: -159.6715,
     blurb: "Smoothies and quick bites near Waimea.",
-  },
-  {
-    id: "ishihara-market",
-    name: "Ishihara Market",
-    category: "food",
-    region: "West",
-    lat: 21.956,
-    lng: -159.667,
-    blurb:
-      "Waimea grocery with a legendary poke and plate-lunch counter — fuel up before the canyon.",
-  },
-  {
-    id: "jojos-shave-ice",
-    name: "JoJo's Shave Ice",
-    category: "food",
-    region: "West",
-    lat: 21.9572,
-    lng: -159.669,
-    blurb:
-      "Towering, syrup-drenched shave ice in Waimea — the classic post-beach treat.",
   },
 ];
