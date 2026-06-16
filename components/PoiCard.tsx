@@ -1,6 +1,6 @@
 "use client";
 
-import { POIS, CATEGORIES } from "@/lib/pois";
+import { POIS, CATEGORIES, textOn } from "@/lib/pois";
 import { useMapStore } from "@/lib/store";
 import { REACTIONS } from "@/lib/collab/types";
 import { useCollab, statsFor, mineFor } from "./CollabProvider";
@@ -33,8 +33,8 @@ export function PoiCard() {
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span
-                    className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold text-white"
-                    style={{ backgroundColor: cat.color }}
+                    className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                    style={{ backgroundColor: cat.color, color: textOn(cat.color) }}
                   >
                     <span aria-hidden>{cat.emoji}</span>
                     {cat.label}

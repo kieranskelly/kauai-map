@@ -10,14 +10,17 @@
 
 export type CategoryKey =
   | "beach"
-  | "hike"
   | "view"
+  | "hike"
   | "waterfall"
   | "sight"
   | "food"
+  | "coffee"
+  | "treats"
+  | "drinks"
+  | "grocery"
   | "town"
-  | "stay"
-  | "do";
+  | "stay";
 
 export interface Category {
   label: string;
@@ -25,20 +28,38 @@ export interface Category {
   color: string;
 }
 
-// Order here is the order the filter chips render in.
+// Colors mirror Kieran's Google My Maps color groups (beaches=blue, food=yellow,
+// coffee=red, hikes=green, waterfalls=deep blue, treats=green, drinks=pink,
+// sights=olive, grocery=amber, views/scenic-stops=wine-red). Order here is the
+// order the filter chips render in.
 export const CATEGORIES: Record<CategoryKey, Category> = {
-  beach: { label: "Beaches", emoji: "🏖️", color: "#06b6d4" },
-  hike: { label: "Hikes", emoji: "🥾", color: "#f97316" },
-  view: { label: "Views", emoji: "🌅", color: "#a855f7" },
-  waterfall: { label: "Falls", emoji: "💧", color: "#3b82f6" },
-  sight: { label: "Sights", emoji: "✨", color: "#ec4899" },
-  food: { label: "Food", emoji: "🍽️", color: "#ef4444" },
-  town: { label: "Towns", emoji: "🏘️", color: "#f59e0b" },
+  beach: { label: "Beaches", emoji: "🏖️", color: "#0288d1" },
+  view: { label: "Views", emoji: "🌄", color: "#880e4f" },
+  hike: { label: "Hikes", emoji: "🥾", color: "#097138" },
+  waterfall: { label: "Falls", emoji: "💧", color: "#01579b" },
+  sight: { label: "Sights", emoji: "✨", color: "#817717" },
+  food: { label: "Food", emoji: "🍽️", color: "#ffea00" },
+  coffee: { label: "Coffee", emoji: "☕", color: "#ff5252" },
+  treats: { label: "Treats", emoji: "🍧", color: "#0f9d58" },
+  drinks: { label: "Drinks", emoji: "🍹", color: "#c2185b" },
+  grocery: { label: "Grocery", emoji: "🛒", color: "#f9a825" },
+  town: { label: "Towns", emoji: "🏘️", color: "#64748b" },
   stay: { label: "Stay", emoji: "🛏️", color: "#0d9488" },
-  do: { label: "Do", emoji: "🤿", color: "#7c3aed" },
 };
 
 export const CATEGORY_KEYS = Object.keys(CATEGORIES) as CategoryKey[];
+
+// Readable text (near-black or white) to lay over a category color, by luminance.
+// Needed because some My Maps colors (yellow food, amber grocery) are too light
+// for white text on the filter chips / card badge.
+export function textOn(hex: string): string {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.slice(0, 2), 16);
+  const g = parseInt(c.slice(2, 4), 16);
+  const b = parseInt(c.slice(4, 6), 16);
+  const L = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return L > 0.6 ? "#1a1a1a" : "#ffffff";
+}
 
 export type Region = "North" | "East" | "South" | "West";
 
@@ -57,7 +78,7 @@ export const POIS: Poi[] = [
   {
     id: "common-ground-kauai",
     name: "Common Ground Kauai",
-    category: "food",
+    category: "sight",
     region: "North",
     lat: 22.1968662,
     lng: -159.4199641,
@@ -76,7 +97,7 @@ export const POIS: Poi[] = [
   {
     id: "foodland-princeville",
     name: "Foodland Princeville",
-    category: "food",
+    category: "grocery",
     region: "North",
     lat: 22.2137938,
     lng: -159.4747524,
@@ -86,7 +107,7 @@ export const POIS: Poi[] = [
   {
     id: "haena-state-park",
     name: "Hāʻena State Park",
-    category: "beach",
+    category: "hike",
     region: "North",
     lat: 22.2205851,
     lng: -159.5774698,
@@ -136,7 +157,7 @@ export const POIS: Poi[] = [
   {
     id: "hanalei-pier",
     name: "Hanalei Pier",
-    category: "sight",
+    category: "beach",
     region: "North",
     lat: 22.2126,
     lng: -159.4982,
@@ -165,7 +186,7 @@ export const POIS: Poi[] = [
   {
     id: "queens-bath",
     name: "Queen's Bath",
-    category: "sight",
+    category: "beach",
     region: "North",
     lat: 22.2292,
     lng: -159.4874,
@@ -203,7 +224,7 @@ export const POIS: Poi[] = [
   {
     id: "one-hotel-hanalei-bay",
     name: "1 Hotel Hanalei Bay",
-    category: "food",
+    category: "drinks",
     region: "North",
     lat: 22.2206,
     lng: -159.4972,
@@ -212,7 +233,7 @@ export const POIS: Poi[] = [
   {
     id: "the-haven",
     name: "the haven",
-    category: "food",
+    category: "coffee",
     region: "North",
     lat: 22.2129,
     lng: -159.541,
@@ -281,7 +302,7 @@ export const POIS: Poi[] = [
   {
     id: "hanakapiai-falls",
     name: "Hanakāpīʻai Falls",
-    category: "hike",
+    category: "waterfall",
     region: "North",
     lat: 22.1858,
     lng: -159.595,
@@ -291,7 +312,7 @@ export const POIS: Poi[] = [
   {
     id: "na-pali-coast",
     name: "Nā Pali Coast",
-    category: "view",
+    category: "hike",
     region: "North",
     lat: 22.1682,
     lng: -159.6577,
@@ -333,7 +354,7 @@ export const POIS: Poi[] = [
   {
     id: "kauai-plantation-railway",
     name: "Kauaʻi Plantation Railway",
-    category: "do",
+    category: "sight",
     region: "East",
     lat: 21.9711103,
     lng: -159.3923377,
@@ -342,7 +363,7 @@ export const POIS: Poi[] = [
   {
     id: "luau-kalamaku",
     name: "Lūʻau Kalamaku",
-    category: "do",
+    category: "sight",
     region: "East",
     lat: 21.9712528,
     lng: -159.3921194,
@@ -430,7 +451,7 @@ export const POIS: Poi[] = [
   {
     id: "kapaa-path",
     name: "Ke Ala Hele Makalae",
-    category: "do",
+    category: "hike",
     region: "East",
     lat: 22.0866,
     lng: -159.338,
@@ -440,7 +461,7 @@ export const POIS: Poi[] = [
   {
     id: "kipu-ranch-adventures",
     name: "Kipu Ranch Adventures",
-    category: "do",
+    category: "sight",
     region: "East",
     lat: 21.9505,
     lng: -159.4216,
@@ -450,7 +471,7 @@ export const POIS: Poi[] = [
   {
     id: "hele-on-bike-rentals",
     name: "Hele On Kauai Bike Rentals",
-    category: "do",
+    category: "sight",
     region: "East",
     lat: 22.0744,
     lng: -159.3188,
@@ -459,7 +480,7 @@ export const POIS: Poi[] = [
   {
     id: "bikram-yoga-kauai",
     name: "Bikram Yoga HI Kauai",
-    category: "do",
+    category: "sight",
     region: "East",
     lat: 22.0629,
     lng: -159.3205,
@@ -497,7 +518,7 @@ export const POIS: Poi[] = [
   {
     id: "the-flying-saucer",
     name: "The Flying Saucer",
-    category: "food",
+    category: "drinks",
     region: "East",
     lat: 22.0762,
     lng: -159.3179,
@@ -506,7 +527,7 @@ export const POIS: Poi[] = [
   {
     id: "mokihana-coffee",
     name: "Mokihana Coffee Co.",
-    category: "food",
+    category: "coffee",
     region: "East",
     lat: 22.0798,
     lng: -159.3147,
@@ -551,7 +572,7 @@ export const POIS: Poi[] = [
   {
     id: "moloaa-organicaa",
     name: "Moloaʻa Organicaʻa",
-    category: "food",
+    category: "sight",
     region: "East",
     lat: 22.1831,
     lng: -159.3262,
@@ -569,7 +590,7 @@ export const POIS: Poi[] = [
   {
     id: "kind-koffee",
     name: "Kind Koffee Company",
-    category: "food",
+    category: "coffee",
     region: "East",
     lat: 21.9592,
     lng: -159.3532,
@@ -578,7 +599,7 @@ export const POIS: Poi[] = [
   {
     id: "blue-bird-kauai",
     name: "Blue Bird Kauai",
-    category: "food",
+    category: "coffee",
     region: "East",
     lat: 21.9711,
     lng: -159.3625,
@@ -587,7 +608,7 @@ export const POIS: Poi[] = [
   {
     id: "rainbeau-jos",
     name: "Rainbeau Jo's",
-    category: "food",
+    category: "coffee",
     region: "East",
     lat: 21.9742,
     lng: -159.3674,
@@ -616,7 +637,7 @@ export const POIS: Poi[] = [
   {
     id: "bikeit-poipu",
     name: "BikeIt Poʻipū — Kauaʻi Ebike Tours",
-    category: "do",
+    category: "sight",
     region: "South",
     lat: 21.9052862,
     lng: -159.4639758,
@@ -634,7 +655,7 @@ export const POIS: Poi[] = [
   {
     id: "little-fish-coffee-poipu",
     name: "Little Fish Coffee — Poʻipū",
-    category: "food",
+    category: "coffee",
     region: "South",
     lat: 21.878309,
     lng: -159.4577481,
@@ -700,7 +721,7 @@ export const POIS: Poi[] = [
   {
     id: "koloa-landing",
     name: "Koloa Landing",
-    category: "beach",
+    category: "sight",
     region: "South",
     lat: 21.8789422,
     lng: -159.4682774,
@@ -710,7 +731,7 @@ export const POIS: Poi[] = [
   {
     id: "poipu-shopping-village",
     name: "Poʻipū Shopping Village",
-    category: "do",
+    category: "sight",
     region: "South",
     lat: 21.8793263,
     lng: -159.4592063,
@@ -729,7 +750,7 @@ export const POIS: Poi[] = [
   {
     id: "poipu-beach",
     name: "Poʻipū Beach Park",
-    category: "beach",
+    category: "sight",
     region: "South",
     lat: 21.873627,
     lng: -159.4547973,
@@ -739,7 +760,7 @@ export const POIS: Poi[] = [
   {
     id: "shipwreck-beach",
     name: "Shipwreck Beach",
-    category: "beach",
+    category: "sight",
     region: "South",
     lat: 21.8747911,
     lng: -159.4369036,
@@ -769,7 +790,7 @@ export const POIS: Poi[] = [
   {
     id: "tree-tunnel",
     name: "Tree Tunnel",
-    category: "sight",
+    category: "view",
     region: "South",
     lat: 21.949,
     lng: -159.4661,
@@ -836,7 +857,7 @@ export const POIS: Poi[] = [
   {
     id: "waikomo-shave-ice",
     name: "Waikomo Shave Ice",
-    category: "food",
+    category: "treats",
     region: "South",
     lat: 21.9229,
     lng: -159.5078,
@@ -924,7 +945,7 @@ export const POIS: Poi[] = [
   {
     id: "red-dirt-waterfall",
     name: "Red Dirt Waterfall",
-    category: "waterfall",
+    category: "view",
     region: "West",
     lat: 22.0093,
     lng: -159.677,
@@ -964,7 +985,7 @@ export const POIS: Poi[] = [
   {
     id: "polihale",
     name: "Polihale State Park",
-    category: "beach",
+    category: "hike",
     region: "West",
     lat: 22.0794713,
     lng: -159.7647939,
@@ -994,7 +1015,7 @@ export const POIS: Poi[] = [
   {
     id: "little-fish-coffee-hanapepe",
     name: "Little Fish Coffee — Hanapēpē",
-    category: "food",
+    category: "coffee",
     region: "West",
     lat: 21.9084,
     lng: -159.5923,
@@ -1003,7 +1024,7 @@ export const POIS: Poi[] = [
   {
     id: "coconut-corner",
     name: "Coconut Corner",
-    category: "food",
+    category: "treats",
     region: "West",
     lat: 21.9569,
     lng: -159.6715,
