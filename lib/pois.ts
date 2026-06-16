@@ -420,16 +420,6 @@ export const POIS: Poi[] = [
       "Western, forested approach to the Nounou ridge trail and the reclining-giant silhouette.",
   },
   {
-    id: "wailua-falls",
-    name: "Wailua Falls",
-    category: "waterfall",
-    region: "East",
-    lat: 22.0386,
-    lng: -159.3786,
-    blurb:
-      "Double 80-ft waterfall right off the road — the one from the opening of Fantasy Island.",
-  },
-  {
     id: "opaekaa-falls",
     name: "ʻŌpaekaʻa Falls",
     category: "waterfall",
@@ -485,16 +475,6 @@ export const POIS: Poi[] = [
     lat: 22.0629,
     lng: -159.3205,
     blurb: "Hot-yoga studio on the east side.",
-  },
-  {
-    id: "pono-market",
-    name: "Pono Market",
-    category: "food",
-    region: "East",
-    lat: 22.0817,
-    lng: -159.319,
-    blurb:
-      "Kapaʻa local-style deli — poke, lau lau, and spam musubi done right. Grab-and-go done well.",
   },
   {
     id: "chicken-in-a-barrel",
