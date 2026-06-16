@@ -125,7 +125,8 @@ function Marker({
 }
 
 export function PhotorealMarkers({ tiles }: { tiles: TilesRenderer }) {
-  const active = useMapStore((s) => s.active);
+  const selectedCats = useMapStore((s) => s.selectedCats);
+  const showAll = selectedCats.length === 0;
   const geo = useMemo(() => buildGeo(tiles), [tiles]);
 
   // Anchors are world-space positions, filled in progressively as we raycast.
@@ -203,7 +204,7 @@ export function PhotorealMarkers({ tiles }: { tiles: TilesRenderer }) {
   return (
     <group>
       {geo.map(({ poi }) => {
-        if (!active[poi.category]) return null;
+        if (!showAll && !selectedCats.includes(poi.category)) return null;
         const anchor = anchors.get(poi.id);
         if (!anchor) return null;
         return <Marker key={poi.id} poi={poi} anchor={anchor} />;

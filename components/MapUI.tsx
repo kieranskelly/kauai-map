@@ -5,6 +5,7 @@ import { Compass } from "./Compass";
 import { Filters } from "./Filters";
 import { Leaderboard } from "./Leaderboard";
 import { PoiCard } from "./PoiCard";
+import { SpotList } from "./SpotList";
 
 // All the DOM chrome that overlays the 3D canvas. Wrapped in CollabProvider so
 // the leaderboard and the info card share one polled board + identity.
@@ -25,6 +26,9 @@ export function MapUI() {
         <div className="flex justify-center">
           <Filters />
         </div>
+
+        {/* Left-side list of spots in the active categories (additive filters). */}
+        <SpotList />
       </div>
 
       {/* Bottom sheet for the selected spot (vote · react · comment) */}

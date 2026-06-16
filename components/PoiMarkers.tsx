@@ -77,11 +77,12 @@ function Marker({
 
 export function PoiMarkers() {
   const hf = use(loadHeightField());
-  const active = useMapStore((s) => s.active);
+  const selectedCats = useMapStore((s) => s.selectedCats);
+  const showAll = selectedCats.length === 0;
 
   return (
     <group>
-      {POIS.filter((p) => active[p.category]).map((poi) => (
+      {POIS.filter((p) => showAll || selectedCats.includes(p.category)).map((poi) => (
         <Marker key={poi.id} poi={poi} pos={lonLatToWorld(hf, poi.lng, poi.lat)} />
       ))}
     </group>
