@@ -635,6 +635,44 @@ export const POIS: Poi[] = [
 
   // ══ South Shore ═══════════════════════════════════════════════
   {
+    id: "koloa-jodo-mission",
+    name: "Koloa Jodo Mission",
+    category: "sight",
+    region: "South",
+    lat: 21.905043,
+    lng: -159.46242,
+    blurb: "Historic Buddhist temple in Old Kōloa Town.",
+  },
+  {
+    id: "labyrinth-momilanikai",
+    name: "Labyrinth at MomiLaniKai",
+    category: "sight",
+    region: "South",
+    lat: 21.893623,
+    lng: -159.405753,
+    blurb: "Oceanfront meditation labyrinth on the Poʻipū/Māhāʻulepu coast.",
+  },
+  {
+    id: "makauwahi-cave-trail",
+    name: "Makauwahi Cave Trail",
+    category: "hike",
+    region: "South",
+    lat: 21.887552,
+    lng: -159.419056,
+    blurb:
+      "Short trail to Makauwahi — Hawaiʻi's largest limestone cave/sinkhole, on the Māhāʻulepu coast.",
+  },
+  {
+    id: "makawehi-bluff",
+    name: "Makawehi Bluff Viewpoint",
+    category: "sight",
+    region: "South",
+    lat: 21.878251,
+    lng: -159.429883,
+    blurb:
+      "Lithified-cliff bluff walk above Shipwreck Beach with wide ocean views.",
+  },
+  {
     id: "bikeit-poipu",
     name: "BikeIt Poʻipū — Kauaʻi Ebike Tours",
     category: "sight",
@@ -772,8 +810,8 @@ export const POIS: Poi[] = [
     name: "Mahaʻulepu Heritage Trail",
     category: "hike",
     region: "South",
-    lat: 21.88,
-    lng: -159.425,
+    lat: 21.884103,
+    lng: -159.418971,
     blurb:
       "Wild, undeveloped coastal trail over sea cliffs, dunes, and sinkholes east of Shipwreck.",
   },
@@ -865,6 +903,15 @@ export const POIS: Poi[] = [
   },
 
   // ══ West Side ═════════════════════════════════════════════════
+  {
+    id: "kilohana-lookout",
+    name: "Kilohana Lookout",
+    category: "hike",
+    region: "West",
+    lat: 22.156469,
+    lng: -159.59367,
+    blurb: "Pihea Trail lookout over the Kalalau Valley, deep in Kōkeʻe.",
+  },
   {
     id: "japanese-grandmas-cafe",
     name: "Japanese Grandma's Cafe",
