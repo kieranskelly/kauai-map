@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORIES, CATEGORY_KEYS } from "@/lib/pois";
+import { CATEGORIES, CATEGORY_KEYS, textOn } from "@/lib/pois";
 import { useMapStore } from "@/lib/store";
 
 export function Filters() {
@@ -18,9 +18,12 @@ export function Filters() {
             onClick={() => toggle(k)}
             aria-pressed={on}
             className={`flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium transition ${
-              on ? "text-white shadow" : "text-white/45"
+              on ? "shadow" : "text-white/45"
             }`}
-            style={{ backgroundColor: on ? c.color : "rgba(255,255,255,0.06)" }}
+            style={{
+              backgroundColor: on ? c.color : "rgba(255,255,255,0.06)",
+              color: on ? textOn(c.color) : undefined,
+            }}
           >
             <span aria-hidden>{c.emoji}</span>
             <span>{c.label}</span>
