@@ -76,6 +76,46 @@ export interface Poi {
 export const POIS: Poi[] = [
   // ══ North Shore ═══════════════════════════════════════════════
   {
+    id: "honopu-beach",
+    name: "Honopu Beach",
+    category: "hike",
+    region: "North",
+    lat: 22.170278,
+    lng: -159.670833,
+    blurb:
+      "Remote Nā Pali 'cathedral' beach with a giant sea arch — reachable only by swimming in from a boat.",
+  },
+  {
+    id: "kalalau-beach",
+    name: "Kalalau Beach",
+    category: "hike",
+    region: "North",
+    lat: 22.172525,
+    lng: -159.658879,
+    blurb:
+      "The wild golden-sand beach at the end of the 11-mile Kalalau Trail, deep in the Nā Pali coast.",
+  },
+  {
+    id: "sunrise-yoga-makai",
+    name: "Sunrise Yoga (Makai Golf)",
+    category: "sight",
+    region: "North",
+    lat: 22.227794,
+    lng: -159.488145,
+    blurb:
+      "Sunrise yoga sessions on the Makai Golf Course bluff in Princeville.",
+  },
+  {
+    id: "waikoko-beach",
+    name: "Waikoko Beach",
+    category: "beach",
+    region: "North",
+    lat: 22.214167,
+    lng: -159.520556,
+    blurb:
+      "Calm, reef-sheltered west corner of Hanalei Bay — gentle swimming and snorkeling.",
+  },
+  {
     id: "common-ground-kauai",
     name: "Common Ground Kauai",
     category: "sight",
@@ -321,6 +361,16 @@ export const POIS: Poi[] = [
   },
 
   // ══ East Side ═════════════════════════════════════════════════
+  {
+    id: "costco-lihue",
+    name: "Costco Wholesale",
+    category: "grocery",
+    region: "East",
+    lat: 21.967005,
+    lng: -159.37957,
+    blurb:
+      "Members-only warehouse store in Līhuʻe — cheap gas, bulk food, and trip provisions.",
+  },
   {
     id: "kauai-museum",
     name: "Kauaʻi Museum",
@@ -863,6 +913,26 @@ export const POIS: Poi[] = [
   },
 
   // ══ West Side ═════════════════════════════════════════════════
+  {
+    id: "barking-sands-beach",
+    name: "Barking Sands Beach",
+    category: "beach",
+    region: "West",
+    lat: 22.068927,
+    lng: -159.779018,
+    blurb:
+      "Long, remote west-side beach by Polihale on Navy (PMRF) land — sands said to 'bark' underfoot.",
+  },
+  {
+    id: "russian-fort-elizabeth",
+    name: "Pāʻulaʻula (Russian Fort Elizabeth)",
+    category: "view",
+    region: "West",
+    lat: 21.951593,
+    lng: -159.664256,
+    blurb:
+      "Stone ruins of an 1816 Russian-built fort above the Waimea River mouth.",
+  },
   {
     id: "kilohana-lookout",
     name: "Kilohana Lookout",
