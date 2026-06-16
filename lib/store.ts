@@ -3,15 +3,16 @@
 // source of truth without prop-drilling across the renderer boundary.
 
 import { create } from "zustand";
-import { CATEGORY_KEYS, type CategoryKey } from "./pois";
+import { type CategoryKey } from "./pois";
 
 interface MapState {
   selectedId: string | null;
   select: (id: string | null) => void;
 
-  /** category key → visible. All on by default. */
-  active: Record<CategoryKey, boolean>;
+  /** Selected filter categories (additive). Empty = no filter → all pins shown. */
+  selectedCats: CategoryKey[];
   toggleCategory: (key: CategoryKey) => void;
+  clearCategories: () => void;
 
   /** On-screen bearing of true north, in degrees (0 = north points up). Written
    *  every frame by the photoreal camera rig; read by the DOM compass widget. */
@@ -26,12 +27,14 @@ export const useMapStore = create<MapState>((set) => ({
   selectedId: null,
   select: (id) => set({ selectedId: id }),
 
-  active: Object.fromEntries(CATEGORY_KEYS.map((k) => [k, true])) as Record<
-    CategoryKey,
-    boolean
-  >,
+  selectedCats: [],
   toggleCategory: (key) =>
-    set((s) => ({ active: { ...s.active, [key]: !s.active[key] } })),
+    set((s) => ({
+      selectedCats: s.selectedCats.includes(key)
+        ? s.selectedCats.filter((k) => k !== key)
+        : [...s.selectedCats, key],
+    })),
+  clearCategories: () => set({ selectedCats: [] }),
 
   compassDeg: 0,
   setCompassDeg: (deg) => set({ compassDeg: deg }),

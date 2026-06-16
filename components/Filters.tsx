@@ -4,14 +4,14 @@ import { CATEGORIES, CATEGORY_KEYS } from "@/lib/pois";
 import { useMapStore } from "@/lib/store";
 
 export function Filters() {
-  const active = useMapStore((s) => s.active);
+  const selectedCats = useMapStore((s) => s.selectedCats);
   const toggle = useMapStore((s) => s.toggleCategory);
 
   return (
     <div className="pointer-events-auto flex max-w-[calc(100vw-1rem)] gap-1.5 overflow-x-auto rounded-full bg-black/35 p-1.5 backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none]">
       {CATEGORY_KEYS.map((k) => {
         const c = CATEGORIES[k];
-        const on = active[k];
+        const on = selectedCats.includes(k);
         return (
           <button
             key={k}
