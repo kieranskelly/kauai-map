@@ -14,6 +14,7 @@ export type CategoryKey =
   | "hike"
   | "waterfall"
   | "sight"
+  | "do"
   | "food"
   | "coffee"
   | "treats"
@@ -38,6 +39,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
   hike: { label: "Hikes", emoji: "🥾", color: "#097138" },
   waterfall: { label: "Falls", emoji: "💧", color: "#01579b" },
   sight: { label: "Sights", emoji: "✨", color: "#817717" },
+  do: { label: "To Do", emoji: "🎟️", color: "#7c3aed" },
   food: { label: "Food", emoji: "🍽️", color: "#ffea00" },
   coffee: { label: "Coffee", emoji: "☕", color: "#ff5252" },
   treats: { label: "Treats", emoji: "🍧", color: "#0f9d58" },
@@ -98,7 +100,7 @@ export const POIS: Poi[] = [
   {
     id: "sunrise-yoga-makai",
     name: "Sunrise Yoga (Makai Golf)",
-    category: "sight",
+    category: "do",
     region: "North",
     lat: 22.227794,
     lng: -159.488145,
