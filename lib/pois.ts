@@ -195,16 +195,6 @@ export const POIS: Poi[] = [
       "Quiet former plantation town — Kong Lung shops, bakeries, the lighthouse, and fish market.",
   },
   {
-    id: "hanalei-bay",
-    name: "Hanalei Bay",
-    category: "beach",
-    region: "North",
-    lat: 22.2058,
-    lng: -159.4997,
-    blurb:
-      "Two-mile crescent of golden sand framed by waterfall-laced mountains; the iconic pier sits at its east end.",
-  },
-  {
     id: "hanalei-pier",
     name: "Hanalei Pier",
     category: "view",
