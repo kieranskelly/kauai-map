@@ -20,8 +20,7 @@ export type CategoryKey =
   | "treats"
   | "drinks"
   | "grocery"
-  | "town"
-  | "stay";
+  | "town";
 
 export interface Category {
   label: string;
@@ -46,7 +45,6 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
   drinks: { label: "Drinks", emoji: "🍹", color: "#c2185b" },
   grocery: { label: "Grocery", emoji: "🛒", color: "#f9a825" },
   town: { label: "Towns", emoji: "🏘️", color: "#64748b" },
-  stay: { label: "Stay", emoji: "🛏️", color: "#0d9488" },
 };
 
 export const CATEGORY_KEYS = Object.keys(CATEGORIES) as CategoryKey[];
@@ -77,6 +75,16 @@ export interface Poi {
 
 export const POIS: Poi[] = [
   // ══ North Shore ═══════════════════════════════════════════════
+  {
+    id: "tahiti-nui",
+    name: "Tahiti Nui",
+    category: "food",
+    region: "North",
+    lat: 22.2033594,
+    lng: -159.4952577,
+    blurb:
+      "Beloved Hanalei institution — Tahitian-Hawaiian food, mai tais, and live music.",
+  },
   {
     id: "honopu-beach",
     name: "Honopu Beach",
@@ -120,7 +128,7 @@ export const POIS: Poi[] = [
   {
     id: "common-ground-kauai",
     name: "Common Ground Kauai",
-    category: "sight",
+    category: "do",
     region: "North",
     lat: 22.1968662,
     lng: -159.4199641,
@@ -130,7 +138,7 @@ export const POIS: Poi[] = [
   {
     id: "waioli-mission-house",
     name: "Waiʻoli Mission House",
-    category: "sight",
+    category: "do",
     region: "North",
     lat: 22.1994797,
     lng: -159.5013946,
@@ -199,7 +207,7 @@ export const POIS: Poi[] = [
   {
     id: "hanalei-pier",
     name: "Hanalei Pier",
-    category: "beach",
+    category: "view",
     region: "North",
     lat: 22.2126,
     lng: -159.4982,
@@ -238,7 +246,7 @@ export const POIS: Poi[] = [
   {
     id: "kilauea-lighthouse",
     name: "Kīlauea Lighthouse",
-    category: "sight",
+    category: "view",
     region: "North",
     lat: 22.2317,
     lng: -159.402,
@@ -314,22 +322,12 @@ export const POIS: Poi[] = [
   {
     id: "limahuli-garden",
     name: "Limahuli Garden",
-    category: "sight",
+    category: "view",
     region: "North",
     lat: 22.2188,
     lng: -159.576,
     blurb:
       "Terraced botanical garden in a lush Nā Pali valley showcasing native and Polynesian plants.",
-  },
-  {
-    id: "hanalei-valley-lookout",
-    name: "Hanalei Valley Lookout",
-    category: "view",
-    region: "North",
-    lat: 22.2061,
-    lng: -159.4663,
-    blurb:
-      "Sweeping view over emerald taro fields and the Hanalei River — best in morning light.",
   },
   {
     id: "kalalau-trail",
@@ -364,6 +362,25 @@ export const POIS: Poi[] = [
 
   // ══ East Side ═════════════════════════════════════════════════
   {
+    id: "safeway-lihue",
+    name: "Safeway",
+    category: "grocery",
+    region: "East",
+    lat: 21.9686757,
+    lng: -159.3857,
+    blurb:
+      "Full-service grocery in the Līhuʻe area — provisions, deli, and pharmacy.",
+  },
+  {
+    id: "lydgate-chocolate",
+    name: "Lydgate Chocolate Tasting Room",
+    category: "do",
+    region: "East",
+    lat: 22.0765511,
+    lng: -159.3182277,
+    blurb: "Bean-to-bar chocolate tastings from a Kauaʻi cacao farm, in Kapaʻa.",
+  },
+  {
     id: "costco-lihue",
     name: "Costco Wholesale",
     category: "grocery",
@@ -376,7 +393,7 @@ export const POIS: Poi[] = [
   {
     id: "kauai-museum",
     name: "Kauaʻi Museum",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 21.975035,
     lng: -159.368253,
@@ -386,7 +403,7 @@ export const POIS: Poi[] = [
   {
     id: "grove-farm-museum",
     name: "Grove Farm Museum",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 21.9654673,
     lng: -159.369151,
@@ -406,7 +423,7 @@ export const POIS: Poi[] = [
   {
     id: "kauai-plantation-railway",
     name: "Kauaʻi Plantation Railway",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 21.9711103,
     lng: -159.3923377,
@@ -415,7 +432,7 @@ export const POIS: Poi[] = [
   {
     id: "luau-kalamaku",
     name: "Lūʻau Kalamaku",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 21.9712528,
     lng: -159.3921194,
@@ -491,19 +508,9 @@ export const POIS: Poi[] = [
       "Wide Kapaʻa surf beach along the coastal path — bodyboarding and a lifeguard.",
   },
   {
-    id: "kapaa-path",
-    name: "Ke Ala Hele Makalae",
-    category: "hike",
-    region: "East",
-    lat: 22.0866,
-    lng: -159.338,
-    blurb:
-      "Breezy coastal walking & biking path threading Kapaʻa's beaches and laid-back town.",
-  },
-  {
     id: "kipu-ranch-adventures",
     name: "Kipu Ranch Adventures",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 21.9505,
     lng: -159.4216,
@@ -513,7 +520,7 @@ export const POIS: Poi[] = [
   {
     id: "hele-on-bike-rentals",
     name: "Hele On Kauai Bike Rentals",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 22.0744,
     lng: -159.3188,
@@ -522,7 +529,7 @@ export const POIS: Poi[] = [
   {
     id: "bikram-yoga-kauai",
     name: "Bikram Yoga HI Kauai",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 22.0629,
     lng: -159.3205,
@@ -558,7 +565,7 @@ export const POIS: Poi[] = [
   {
     id: "wailua-bakeshop",
     name: "Wailua Bakeshop",
-    category: "food",
+    category: "coffee",
     region: "East",
     lat: 22.0742,
     lng: -159.3189,
@@ -594,7 +601,7 @@ export const POIS: Poi[] = [
   {
     id: "moloaa-organicaa",
     name: "Moloaʻa Organicaʻa",
-    category: "sight",
+    category: "do",
     region: "East",
     lat: 22.1831,
     lng: -159.3262,
@@ -657,6 +664,15 @@ export const POIS: Poi[] = [
 
   // ══ South Shore ═══════════════════════════════════════════════
   {
+    id: "porkys-kauai",
+    name: "Porky's Kauaʻi",
+    category: "food",
+    region: "South",
+    lat: 21.9044592,
+    lng: -159.464016,
+    blurb: "Kalua-pork hot dogs and plates from the food spot in Old Kōloa Town.",
+  },
+  {
     id: "koloa-jodo-mission",
     name: "Koloa Jodo Mission",
     category: "sight",
@@ -697,7 +713,7 @@ export const POIS: Poi[] = [
   {
     id: "bikeit-poipu",
     name: "BikeIt Poʻipū — Kauaʻi Ebike Tours",
-    category: "sight",
+    category: "do",
     region: "South",
     lat: 21.9052862,
     lng: -159.4639758,
@@ -743,7 +759,7 @@ export const POIS: Poi[] = [
   {
     id: "mcbryde-allerton-garden",
     name: "McBryde & Allerton Garden",
-    category: "sight",
+    category: "do",
     region: "South",
     lat: 21.8863515,
     lng: -159.4927257,
@@ -791,7 +807,7 @@ export const POIS: Poi[] = [
   {
     id: "poipu-shopping-village",
     name: "Poʻipū Shopping Village",
-    category: "sight",
+    category: "do",
     region: "South",
     lat: 21.8793263,
     lng: -159.4592063,
@@ -965,7 +981,7 @@ export const POIS: Poi[] = [
   {
     id: "kokee-museum",
     name: "Kōkeʻe Natural History Museum",
-    category: "sight",
+    category: "do",
     region: "West",
     lat: 22.1303222,
     lng: -159.6575988,
