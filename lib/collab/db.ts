@@ -38,7 +38,7 @@ type CommentSelectRow = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Plain Postgres on engineering-services since 2026-10-13; Neon's HTTP driver can't reach it.
-const sql = USE_PG ? postgres(CONN, { max: 5 }) : null;
+const sql = USE_PG ? postgres(CONN, { max: 5, onnotice: () => {} }) : null;
 
 // Create tables on first use. Module-level state survives within a warm
 // instance; `if not exists` keeps it safe if a cold instance re-runs it.
