@@ -1,7 +1,7 @@
 // Server-only data layer for the collaboration features.
 //
 // Two interchangeable backends behind one set of functions:
-//   • Postgres (Neon)  — used in production / whenever DATABASE_URL is set.
+//   • Postgres  — used in production / whenever DATABASE_URL is set.
 //   • JSON file        — local-dev fallback so the whole feature is testable
 //                        with no external service. NEVER runs on Vercel (its
 //                        filesystem is read-only and DATABASE_URL is set there).
@@ -12,15 +12,12 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { neon } from "@neondatabase/serverless";
+import postgres from "postgres";
 import type { Board, CommentRow, PoiStats, MyState } from "./types";
 
 const CONN = process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 const USE_PG = CONN.length > 0;
 
-// Shapes the SQL columns resolve to. The neon driver returns untyped
-// `Record<string, any>[]`, so we await first and cast the array (legal: each of
-// these is assignable to Record) rather than casting the query promise.
 type VoteAggRow = {
   poi_id: string;
   device_id: string;
@@ -37,12 +34,11 @@ type CommentSelectRow = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Postgres (Neon) backend
+// Postgres backend
 // ─────────────────────────────────────────────────────────────────────────────
 
-// `neon()` returns a tagged-template query function backed by HTTP — no pool to
-// manage, which is exactly what serverless functions want.
-const sql = USE_PG ? neon(CONN) : null;
+// Plain Postgres on engineering-services since 2026-10-13; Neon's HTTP driver can't reach it.
+const sql = USE_PG ? postgres(CONN, { max: 5 }) : null;
 
 // Create tables on first use. Module-level state survives within a warm
 // instance; `if not exists` keeps it safe if a cold instance re-runs it.
@@ -127,14 +123,10 @@ export async function getBoard(deviceId: string): Promise<Board> {
   if (sql) {
     await ensureSchema();
     const [voteRows, commentRows] = await Promise.all([
-      sql`select poi_id, device_id, want, reaction from votes`,
-      sql`select poi_id, count(*)::int as n from comments group by poi_id`,
+      sql<VoteAggRow[]>`select poi_id, device_id, want, reaction from votes`,
+      sql<CommentCountRow[]>`select poi_id, count(*)::int as n from comments group by poi_id`,
     ]);
-    return buildBoard(
-      voteRows as VoteAggRow[],
-      commentRows as CommentCountRow[],
-      deviceId,
-    );
+    return buildBoard(voteRows, commentRows, deviceId);
   }
 
   return withFile((data) => {
