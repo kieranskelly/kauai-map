@@ -1,0 +1,15 @@
+[Unit]
+Description=kauai-map: Kauai trip map (kauai.gridlights.co)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/kauai-map/env
+Environment=PORT=8032 HOSTNAME=127.0.0.1 NODE_ENV=production
+WorkingDirectory=/opt/kauai-map
+ExecStart=/usr/bin/node /opt/kauai-map/server.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
